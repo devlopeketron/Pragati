@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import {Component, useLayoutEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -31,7 +31,8 @@ class App extends Component {
       //   name:'jacky'
       // }
       //name: 'aniket',
-    monster: [],
+    monsters: [],
+    searchField:''
      };
      console.log(constructor , '-----------');
   }
@@ -39,7 +40,7 @@ class App extends Component {
     fetch('https://jsonplaceholder.typicode.com/users').then((Response) => 
     Response.json()).then((user)=>
     this.setState(() => {
-      return {monster :user}
+      return {monsters :user}
     
     },()=>{
       console.log(this.state)
@@ -48,23 +49,29 @@ class App extends Component {
   }
    
   render(){
+    const filteredMonster= this.state.monsters.filter((monster) =>{
+      return monster.name.toLocaleLowerCase().includes(this.state.searchField);
+    });
+    console.log(filteredMonster, '---------------')
+
   return (
     <div className="App">
       <input className='search-box' type='search' placeholder='search monster' onChange = {(events)=>{
-      console.log(events.target.value);
-      const searchstring = events.target.value.toLocaleLowerCase();
-      const filteredMonster= this.state.monster.filter((monster) =>{
-        return monster.name.toLocaleLowerCase().includes(searchstring);
-      });
+      const searchField = events.target.value.toLocaleLowerCase();
+      
       this.setState(()=> {
-        return { monster : filteredMonster};
+        return { searchField };
       });
       }}
        />
     
-         {
-          this.state.monster.map((monster)=>{
-            return<h1>{monster.name}</h1>
+         {filteredMonster.map((monster)=>{
+            
+            return (
+            <divs key ={monster.id}>
+            <h1>{monster.name}</h1>
+            </divs>
+            );
           })}
        
           
