@@ -22,10 +22,11 @@ class App extends Component {
          onClick={() => {
           this.setState({name :  'Pragati'});
 
-         }}> Change button</button>
+         }}> Change buttongggg</button>
  
 
         
+         
     
       </header>
     </div>
