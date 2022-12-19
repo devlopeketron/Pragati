@@ -1,5 +1,6 @@
 import { Component } from "react";
 import {App} from "../../App";
+import './card-list.style.css';
 class CardList extends Component
 {
 
