@@ -7,9 +7,13 @@ class CardList extends Component
         const{monsters} = this.props;
         
         return (
-        <div>
+        <div className="card-list">
             {monsters.map(monster =>(
-                <h1 key={monster.id}>{monster.name}</h1>
+                <div className="card-container">
+                    <img alt={`monster ${monster.name}`} src={`https://robohash.org/${monster.id}aniket`}/>
+                    <h2>{monster.name}</h2>
+                    <p>{monster.email}</p>
+                    </div>
             ))}
             </div>
         )
